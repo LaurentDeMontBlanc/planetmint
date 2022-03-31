@@ -35,6 +35,9 @@ _, TX_SCHEMA_CREATE = _load_schema('transaction_create_' +
 _, TX_SCHEMA_TRANSFER = _load_schema('transaction_transfer_' +
                                      TX_SCHEMA_VERSION)
 
+_, TX_SCHEMA_COMPOSE = _load_schema('transaction_compose_' +
+                                     TX_SCHEMA_VERSION)
+
 _, TX_SCHEMA_VALIDATOR_ELECTION = _load_schema('transaction_validator_election_' +
                                                TX_SCHEMA_VERSION)
 
@@ -78,5 +81,7 @@ def validate_transaction_schema(tx):
     _validate_schema(TX_SCHEMA_COMMON, tx)
     if tx['operation'] == 'TRANSFER':
         _validate_schema(TX_SCHEMA_TRANSFER, tx)
+    elif tx['operation'] == 'COMPOSE':
+        _validate_schema(TX_SCHEMA_COMPOSE, tx)
     else:
         _validate_schema(TX_SCHEMA_CREATE, tx)
